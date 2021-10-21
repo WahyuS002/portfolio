@@ -10,15 +10,15 @@
         <link rel="stylesheet" href="../assets/css/style.css" />
     </head>
     <body class="font-poppins bg-[#02021E]">
-        <div class="mt-6 mb-32 md:my-12 mx-8 md:mx-32">
-            <div class="flex items-center justify-between">
+        <div class="mt-6 mb-32 md:my-12" x-data="{ open: false }">
+            <div class="flex items-center justify-between mx-8 md:mx-32">
                 <div>
-                    <p class="font-semibold text-white uppercase">Wahyu Syahputra</p>
-                    <p class="text-gray-400 text-sm">Frontend Web Dev</p>
+                    <p class="font-semibold text-white md:uppercase">Wahyu Syahputra</p>
+                    <p class="text-gray-400 text-sm hidden md:block">Frontend Web Dev</p>
                 </div>
                 <div class="block md:hidden">
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current text-white" viewBox="0 0 20 20" fill="currentColor">
+                    <span x-on:click="open = ! open" @click.away="open = false" class="cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current text-white" viewBox="0 0 20 20" fill="currentColor">
                             <path
                                 fill-rule="evenodd"
                                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
@@ -29,8 +29,8 @@
                 </div>
                 <nav class="hidden md:block">
                     <ul class="flex items-center space-x-12">
-                        <li class="text-white text-lg">About</li>
-                        <li class="text-white text-lg">Work</li>
+                        <a href="#about" class="text-white text-lg">About</a>
+                        <a href="#works" class="text-white text-lg">Work</a>
                         <li>
                             <button
                                 class="font-semibold px-6 py-3 rounded-lg bg-[#3719CA] text-white text-lg hover:bg-blue-50 hover:text-black transition duration-300 ease-in-out"
@@ -42,18 +42,33 @@
                     </ul>
                 </nav>
             </div>
+            <div class="bg-[#02021E] mt-4 py-4" x-show="open" x-transition.duration.300ms>
+                <nav class="text-center">
+                    <ul class="flex justify-center space-x-5">
+                        <a href="#about" class="text-lg font-medium text-white block">About</a>
+                        <a href="#works" class="text-lg font-medium text-white block">Works</a>
+                    </ul>
+                    <button
+                        class="font-semibold px-14 py-3 rounded-lg bg-[#3719CA] text-white text-lg hover:bg-blue-50 hover:text-black transition duration-300 ease-in-out mt-4"
+                        style="box-shadow: 5px 5px 0 0 #200d7c"
+                    >
+                        Get in Touch
+                    </button>
+                </nav>
+            </div>
         </div>
         <div class="mt-8 md:mt-40 mx-8 md:mx-72">
             <div class="text-center">
                 <div>
-                    <h1 class="text-5xl md:text-7xl font-bold text-gray-100">I Will Convert <br class="sm:hidden" /><span id="typed" class="text-green-500 inline-block"></span></h1>
-                    <h1 class="text-5xl md:text-7xl font-bold text-gray-100">to Tailwind CSS</h1>
+                    <h1 class="text-4xl md:text-7xl font-bold text-gray-100">I Will Convert <br class="sm:hidden" /><span id="typed" class="text-green-500 inline-block"></span></h1>
+                    <h1 class="text-4xl md:text-7xl font-bold text-gray-100">to Tailwind CSS</h1>
                 </div>
                 <div class="mt-8">
                     <p class="text-gray-400">Your happiness is my priority.</p>
                 </div>
             </div>
         </div>
+        <div id="about"></div>
         <div class="mt-32 md:mt-64 mx-8 md:mx-32">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="text-white font-semibold text-xl md:text-3xl w-full md:w-2/5">Hi There 👋 I'am Wahyu</div>
@@ -69,7 +84,7 @@
         </div>
 
         <div class="mt-32 md:mt-64 mx-8 md:mx-32">
-            <h2 class="text-5xl md:text-7xl font-semibold text-white text-center">Recent Works</h2>
+            <h2 class="text-4xl md:text-7xl font-semibold text-white text-center" id="works">Recent Works</h2>
         </div>
 
         <div class="overflow-hidden">
@@ -86,7 +101,7 @@
 
             <div class="mx-8 md:mx-72">
                 <div class="mt-64">
-                    <h2 class="text-5xl md:text-7xl font-semibold text-white text-center">Say hi to Me</h2>
+                    <h2 class="text-4xl md:text-7xl font-semibold text-white text-center">Say hi to Me</h2>
                     <p class="text-sm md:text-base text-gray-400 text-center leading-loose mt-4">
                         If you need convert your design to Tailwind Css for your project, send me message on fiver and I'll reply it as soon as possible.
                     </p>
@@ -109,6 +124,7 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script defer src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"></script>
 
 <script>
     var typed = new Typed('#typed', {
@@ -117,6 +133,18 @@
         backSpeed: 100,
         loop: true,
         showCursor: false,
+    })
+</script>
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault()
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth',
+            })
+        })
     })
 </script>
 
