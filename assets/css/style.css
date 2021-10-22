@@ -635,8 +635,8 @@ video {
 .h-96 {
 	height: 24rem;
 }
-.h-10 {
-	height: 2.5rem;
+.h-full {
+	height: 100%;
 }
 .w-6 {
 	width: 1.5rem;
@@ -646,9 +646,6 @@ video {
 }
 .w-96 {
 	width: 24rem;
-}
-.w-10 {
-	width: 2.5rem;
 }
 .-rotate-3 {
 	--tw-rotate: -3deg;
@@ -710,6 +707,14 @@ video {
 }
 .fill-current {
 	fill: currentColor;
+}
+.object-contain {
+	-o-object-fit: contain;
+	   object-fit: contain;
+}
+.object-cover {
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 .px-6 {
 	padding-left: 1.5rem;
@@ -883,9 +888,5 @@ video {
 	.md\:text-base {
 		font-size: 1rem;
 		line-height: 1.5rem;
-	}
-
-	.md\:uppercase {
-		text-transform: uppercase;
 	}
 }
